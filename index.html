@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>我的求职画像</title>
+<style>
+  :root { color-scheme: light; font-family: system-ui, "Microsoft YaHei", sans-serif; color: #182b31; background: #eef3f1; }
+  * { box-sizing: border-box; }
+  body { margin: 0; line-height: 1.65; }
+  main { width: min(100% - 32px, 980px); margin: 28px auto; }
+  header { background: #123a3b; color: white; border-radius: 24px; padding: clamp(22px, 5vw, 52px); }
+  h1 { font-size: clamp(32px, 6vw, 54px); margin: 4px 0; line-height: 1.2; }
+  h2 { font-size: 22px; margin: 0 0 12px; }
+  h3, p { margin: 0 0 10px; }
+  .tag { color: #b9efda; font-weight: 700; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 16px; margin: 16px 0; }
+  .panel, details { background: white; border-radius: 18px; padding: 22px; }
+  .muted { color: #4d6668; }
+  .bars { display: flex; align-items: end; gap: 12px; overflow-x: auto; }
+  .column { flex: 1 0 88px; text-align: center; overflow-wrap: anywhere; }
+  .slot { height: 110px; display: flex; flex-direction: column; justify-content: end; align-items: center; }
+  .bar { background: #158067; width: min(54px, 72%); border-radius: 8px 8px 0 0; }
+  .donut { width: 136px; aspect-ratio: 1; border-radius: 50%; margin: 0 auto 12px; display: grid; place-items: center; }
+  .donut[hidden] { display: none; }
+  .donut::after { content: ""; width: 76px; aspect-ratio: 1; border-radius: 50%; background: white; }
+  .swatch { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 8px; }
+  article { border-top: 1px solid #dce8e4; padding-top: 12px; margin-top: 12px; overflow-wrap: anywhere; }
+  ul { padding-left: 22px; }
+  textarea { width: 100%; min-height: 120px; margin: 12px 0; padding: 10px; font: inherit; }
+  button { border: 0; border-radius: 8px; padding: 8px 14px; background: #123a3b; color: white; font: inherit; cursor: pointer; }
+  #notice { color: #963920; margin-top: 8px; }
+  @media print { details { display: none; } .panel, article { break-inside: avoid; } * { print-color-adjust: exact; } }
+</style>
+</head>
+<body>
+<main>
+  <header><div class="tag" id="mode">求职助手 · 示例报告</div><h1>我的求职画像</h1><p id="profile"></p></header>
+  <div class="grid">
+    <section class="panel"><h2>岗位探索等级</h2><p class="muted">3 优先探索 · 2 值得尝试 · 1 待验证</p><div id="bars" class="bars"></div></section>
+    <section class="panel"><h2>求职偏好</h2><div id="donut" class="donut" hidden aria-hidden="true"></div><p id="weight-note" class="muted"></p><ul id="preferences"></ul></section>
+  </div>
+  <div class="grid">
+    <section class="panel"><h2>已有基础</h2><div id="strengths"></div></section>
+    <section class="panel"><h2>方向建议</h2><div id="interests"></div></section>
+  </div>
+  <div class="grid">
+    <section class="panel"><h2>先做一件事</h2><p id="first_action"></p></section>
+    <section class="panel"><h2>待确认</h2><ul id="unknowns"></ul></section>
+  </div>
+  <details><summary>导入自己的画像</summary>
+    <p class="muted">粘贴 Agent 回复里的完整画像 JSON。内容只在当前页面处理。</p>
+    <textarea id="source" aria-label="画像 JSON" spellcheck="false"></textarea>
+    <button id="load" type="button">更新报告</button><p id="notice" role="status"></p>
+  </details>
+</main>
+<script>
+const demo = {
+  status: 'ready',
+  profile: '数学专业应届毕业生，做过 Excel 销量分析，也给同学讲过函数单调性。对数据分析和数学教学都感兴趣，希望在重庆工作，并在下班后留出学习时间。',
+  strengths: [
+    {name:'数据汇总', evidence:'做过 Excel 销量分析课程项目。', application:'尝试周报制作和基础数据分析。'},
+    {name:'数学讲解', evidence:'给同学讲过函数单调性。', application:'尝试数学答疑或微试讲。'}
+  ],
+  interests: [
+    {role:'数据分析', score:3, level:'优先探索', daily_work:'整理业务数据并解释图表。', reason:'有 Excel 项目经历，也明确表示感兴趣。', to_verify:'是否喜欢核对口径和解释结论。', next_step:'把课程项目整理成一页分析报告。'},
+    {role:'数学教学', score:3, level:'优先探索', daily_work:'备课、讲解和答疑。', reason:'有同伴讲解经历，也明确表示感兴趣。', to_verify:'是否喜欢准备讲稿并根据反馈调整讲法。', next_step:'完成一次函数单调性微试讲。'}
+  ],
+  preferences: [{name:'工作城市', weight:null, detail:'优先考虑重庆。'}, {name:'学习时间', weight:null, detail:'希望下班后留出时间学习。'}],
+  unknowns: ['期望薪资范围', '愿意接受的通勤范围'],
+  first_action: '把 Excel 销量分析项目整理成一页作品，写清数据来源、图表和结论。'
+};
+const colors = ['#158067', '#3069a2', '#aa591f', '#7954a3', '#b23b64', '#626a35'];
+const byId = id => document.getElementById(id);
+const list = value => Array.isArray(value) ? value : [];
+function add(parent, tag, value, className) {
+  const element = document.createElement(tag);
+  if (className) element.className = className;
+  element.textContent = typeof value === 'string' ? value : '';
+  parent.append(element);
+  return element;
+}
+function lines(parent, fields) {
+  for (const [label, value] of fields) {
+    if (typeof value === 'string' && value.trim()) add(parent, 'p', label + '　' + value);
+  }
+}
+function render(data, isDemo) {
+  if (data?.status !== 'ready' || typeof data.profile !== 'string' || !Array.isArray(data.interests)) {
+    throw new Error('请粘贴状态为 ready 的完整画像 JSON。');
+  }
+  for (const id of ['bars','strengths','interests','preferences','unknowns']) byId(id).replaceChildren();
+  byId('mode').textContent = isDemo ? '求职助手 · 示例报告' : '求职助手 · 个人报告';
+  byId('profile').textContent = data.profile;
+  byId('first_action').textContent = typeof data.first_action === 'string' ? data.first_action : '暂未提供';
+  for (const item of data.interests.filter(x => typeof x?.role === 'string')) {
+    if (Number.isInteger(item.score) && item.score >= 1 && item.score <= 3) {
+      const column = add(byId('bars'), 'div', '', 'column');
+      const slot = add(column, 'div', '', 'slot');
+      add(slot, 'strong', item.score + ' / 3');
+      add(slot, 'div', '', 'bar').style.height = (item.score * 25) + 'px';
+      add(column, 'div', item.role);
+    }
+    const card = add(byId('interests'), 'article');
+    add(card, 'h3', item.role + (typeof item.level === 'string' ? ' · ' + item.level : ''));
+    lines(card, [['平时做什么', item.daily_work], ['推荐依据', item.reason], ['还想验证', item.to_verify], ['先试一件事', item.next_step]]);
+  }
+  if (!byId('bars').childElementCount) add(byId('bars'), 'p', '暂未提供探索等级。');
+  for (const item of list(data.strengths).filter(x => typeof x?.name === 'string')) {
+    const card = add(byId('strengths'), 'article');
+    add(card, 'h3', item.name);
+    lines(card, [['经历依据', item.evidence], ['可以用在', item.application]]);
+  }
+  const prefs = list(data.preferences).filter(x => typeof x?.name === 'string');
+  const weighted = prefs.length > 0 && prefs.every(x => Number.isFinite(x.weight) && x.weight >= 0) &&
+    Math.abs(prefs.reduce((sum, x) => sum + x.weight, 0) - 100) < 0.000001;
+  const donut = byId('donut');
+  donut.hidden = !weighted;
+  byId('weight-note').textContent = weighted ? '按已确认的权重绘制。' : '偏好尚未分配权重，先用文字展示。';
+  let start = 0;
+  const slices = [];
+  prefs.forEach((item, i) => {
+    const color = colors[i % colors.length];
+    const row = add(byId('preferences'), 'li');
+    if (weighted) {
+      add(row, 'span', '', 'swatch').style.background = color;
+      slices.push(color + ' ' + start + '% ' + (start + item.weight) + '%');
+      start += item.weight;
+    }
+    add(row, 'strong', item.name + (weighted ? ' ' + item.weight + '%' : ''));
+    if (typeof item.detail === 'string') add(row, 'span', '　' + item.detail);
+  });
+  if (weighted) donut.style.background = 'conic-gradient(' + slices.join(', ') + ')';
+  for (const item of list(data.unknowns)) if (typeof item === 'string') add(byId('unknowns'), 'li', item);
+}
+byId('load').addEventListener('click', () => {
+  try {
+    render(JSON.parse(byId('source').value), false);
+    byId('notice').textContent = '';
+    window.scrollTo(0, 0);
+  } catch (error) {
+    byId('notice').textContent = error instanceof SyntaxError ? '这段内容不是完整 JSON，请从开头的 { 复制到最后的 }。' : error.message;
+  }
+});
+render(demo, true);
+if (window.location.hash.startsWith('#profile=')) {
+  try {
+    const encoded = window.location.hash.slice('#profile='.length);
+    render(JSON.parse(decodeURIComponent(encoded)), false);
+  } catch {
+    byId('mode').textContent = '求职助手 · 链接数据无法读取 · 以下为示例';
+  }
+}
+</script>
+</body>
+</html>
