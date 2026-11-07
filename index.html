@@ -1,156 +1,944 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>我的求职画像</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>求职画像报告 · 重庆高中语文教师</title>
 <style>
-  :root { color-scheme: light; font-family: system-ui, "Microsoft YaHei", sans-serif; color: #182b31; background: #eef3f1; }
-  * { box-sizing: border-box; }
-  body { margin: 0; line-height: 1.65; }
-  main { width: min(100% - 32px, 980px); margin: 28px auto; }
-  header { background: #123a3b; color: white; border-radius: 24px; padding: clamp(22px, 5vw, 52px); }
-  h1 { font-size: clamp(32px, 6vw, 54px); margin: 4px 0; line-height: 1.2; }
-  h2 { font-size: 22px; margin: 0 0 12px; }
-  h3, p { margin: 0 0 10px; }
-  .tag { color: #b9efda; font-weight: 700; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 16px; margin: 16px 0; }
-  .panel, details { background: white; border-radius: 18px; padding: 22px; }
-  .muted { color: #4d6668; }
-  .bars { display: flex; align-items: end; gap: 12px; overflow-x: auto; }
-  .column { flex: 1 0 88px; text-align: center; overflow-wrap: anywhere; }
-  .slot { height: 110px; display: flex; flex-direction: column; justify-content: end; align-items: center; }
-  .bar { background: #158067; width: min(54px, 72%); border-radius: 8px 8px 0 0; }
-  .donut { width: 136px; aspect-ratio: 1; border-radius: 50%; margin: 0 auto 12px; display: grid; place-items: center; }
-  .donut[hidden] { display: none; }
-  .donut::after { content: ""; width: 76px; aspect-ratio: 1; border-radius: 50%; background: white; }
-  .swatch { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 8px; }
-  article { border-top: 1px solid #dce8e4; padding-top: 12px; margin-top: 12px; overflow-wrap: anywhere; }
-  ul { padding-left: 22px; }
-  textarea { width: 100%; min-height: 120px; margin: 12px 0; padding: 10px; font: inherit; }
-  button { border: 0; border-radius: 8px; padding: 8px 14px; background: #123a3b; color: white; font: inherit; cursor: pointer; }
-  #notice { color: #963920; margin-top: 8px; }
-  @media print { details { display: none; } .panel, article { break-inside: avoid; } * { print-color-adjust: exact; } }
+  :root{
+    --ink:#1c1c1c;
+    --ink-2:#3d3d3d;
+    --ink-3:#6b6b6b;
+    --line:#e2ddd3;
+    --paper:#ffffff;
+    --bg:#f6f4ef;
+    --accent:#8c2f39;
+    --accent-soft:#fbf1f1;
+    --green:#2f6b4f;
+    --green-soft:#eef5f0;
+    --amber:#9a6b12;
+    --amber-soft:#fdf6e6;
+    --grey-soft:#f2f0eb;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB","Source Han Sans SC",sans-serif;
+    font-size:15px; line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{
+    max-width:1000px; margin:0 auto; background:var(--paper);
+    padding:56px 64px 72px;
+    box-shadow:0 2px 24px rgba(0,0,0,.06);
+  }
+  /* ---------- 封面区 ---------- */
+  .cover{border-bottom:3px solid var(--ink); padding-bottom:26px; margin-bottom:8px;}
+  .kicker{font-size:12px; letter-spacing:.22em; color:var(--accent); font-weight:600;}
+  h1{font-size:33px; line-height:1.35; margin:14px 0 10px; font-weight:700; letter-spacing:-.5px;}
+  .sub{font-size:15px; color:var(--ink-3); margin:0;}
+  .meta-strip{
+    display:flex; flex-wrap:wrap; gap:0; margin:26px 0 0;
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .meta-item{flex:1 1 20%; padding:12px 14px 12px 0; border-right:1px solid var(--line); min-width:150px;}
+  .meta-item:last-child{border-right:none;}
+  .meta-item .k{font-size:11px; color:var(--ink-3); letter-spacing:.08em; display:block;}
+  .meta-item .v{font-size:14px; font-weight:600; display:block; margin-top:3px;}
+  /* ---------- 标题 ---------- */
+  h2{
+    font-size:20px; margin:48px 0 6px; padding-left:13px; font-weight:700;
+    border-left:5px solid var(--accent); line-height:1.4;
+  }
+  h2 .num{color:var(--accent); font-size:13px; letter-spacing:.1em; display:block; font-weight:600; margin-bottom:2px;}
+  h3{font-size:16px; margin:28px 0 8px; font-weight:700;}
+  h4{font-size:14px; margin:18px 0 4px; font-weight:700; color:var(--ink-2);}
+  .lede{color:var(--ink-2); font-size:14.5px; margin:10px 0 18px;}
+  /* ---------- 图例 ---------- */
+  .legend{
+    display:flex; gap:18px; flex-wrap:wrap; font-size:12.5px;
+    background:var(--grey-soft); border:1px solid var(--line); border-radius:4px;
+    padding:10px 14px; margin:20px 0 0; color:var(--ink-2);
+  }
+  .legend b{font-weight:600;}
+  /* ---------- 卡片 ---------- */
+  .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:16px 0 0;}
+  .card{background:var(--grey-soft); border-radius:4px; padding:16px 18px; border-top:3px solid var(--ink);}
+  .card.red{border-top-color:var(--accent);}
+  .card.green{border-top-color:var(--green);}
+  .card.amber{border-top-color:var(--amber);}
+  .card h4{margin:0 0 8px; font-size:13px; letter-spacing:.06em;}
+  .card ul{margin:0; padding-left:16px;}
+  .card li{font-size:13.5px; margin-bottom:5px; line-height:1.7;}
+  /* ---------- 表格 ---------- */
+  table{width:100%; border-collapse:collapse; margin:14px 0 6px; font-size:13.5px;}
+  th{
+    background:#efebe3; text-align:left; font-weight:600; color:var(--ink-2);
+    padding:9px 10px; border:1px solid var(--line); font-size:12.5px; letter-spacing:.03em;
+  }
+  td{padding:10px; border:1px solid var(--line); vertical-align:top; line-height:1.7;}
+  tbody tr:nth-child(even){background:#fbfaf7;}
+  td.tight{font-size:12.8px; color:var(--ink-2);}
+  /* ---------- 徽章 ---------- */
+  .tag{
+    display:inline-block; font-size:11.5px; padding:1px 8px; border-radius:10px;
+    font-weight:600; white-space:nowrap; line-height:1.7;
+  }
+  .t-ok{background:var(--green-soft); color:var(--green); border:1px solid #cfe3d7;}
+  .t-warn{background:var(--amber-soft); color:var(--amber); border:1px solid #ecd9ae;}
+  .t-no{background:var(--accent-soft); color:var(--accent); border:1px solid #eed3d5;}
+  .t-q{background:#eef1f6; color:#3f5675; border:1px solid #d3dfec;}
+  /* ---------- 匹配度条 ---------- */
+  .bar-wrap{display:flex; align-items:center; gap:9px;}
+  .bar-bg{flex:1; height:6px; background:#e9e5dc; border-radius:3px; overflow:hidden; min-width:52px;}
+  .bar{height:100%; background:var(--green); border-radius:3px;}
+  .bar.mid{background:#c69433;}
+  .bar.low{background:#b9676d;}
+  /* ---------- 其它块 ---------- */
+  .callout{
+    border-left:4px solid var(--accent); background:var(--accent-soft);
+    padding:14px 18px; margin:18px 0; font-size:14px; border-radius:0 4px 4px 0;
+  }
+  .callout.neutral{border-left-color:#8a8577; background:var(--grey-soft);}
+  .callout b{color:var(--accent);}
+  .callout.neutral b{color:var(--ink);}
+  ul.clean{list-style:none; padding-left:0; margin:10px 0;}
+  ul.clean li{padding-left:20px; position:relative; margin-bottom:8px; font-size:14px;}
+  ul.clean li::before{content:"—"; position:absolute; left:0; color:var(--accent); font-weight:700;}
+  ol.steps{padding-left:22px; margin:10px 0;}
+  ol.steps li{margin-bottom:10px; font-size:14px;}
+  a{color:#1f4e79; text-decoration:none; border-bottom:1px solid #c3d4e3; word-break:break-all;}
+  a:hover{border-bottom-color:#1f4e79;}
+  .url{font-family:Consolas,Monaco,"Courier New",monospace; font-size:12px; color:#4a6a88;}
+  .quote{
+    border-left:3px solid #cbc4b6; padding:4px 0 4px 16px; margin:14px 0;
+    color:var(--ink-2); font-size:14px; font-style:normal;
+  }
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+  .kv{font-size:13.5px;}
+  .kv dt{font-weight:600; color:var(--ink-2); margin-top:9px;}
+  .kv dd{margin:2px 0 0; color:var(--ink-3);}
+  footer{margin-top:52px; padding-top:18px; border-top:1px solid var(--line); font-size:12.5px; color:var(--ink-3);}
+  .footnote{font-size:12.5px; color:var(--ink-3); margin:6px 0 0; line-height:1.7;}
+  @media print{
+    body{background:#fff;}
+    .page{box-shadow:none; padding:0 12px; max-width:100%;}
+    h2{page-break-after:avoid;}
+    table,.card,.callout{page-break-inside:avoid;}
+  }
+  @media (max-width:820px){
+    .page{padding:30px 22px 44px;}
+    h1{font-size:25px;}
+    .cards{grid-template-columns:1fr;}
+    .two-col{grid-template-columns:1fr;}
+    .meta-item{flex:1 1 45%;}
+  }
 </style>
 </head>
 <body>
-<main>
-  <header><div class="tag" id="mode">求职助手 · 示例报告</div><h1>我的求职画像</h1><p id="profile"></p></header>
-  <div class="grid">
-    <section class="panel"><h2>岗位探索等级</h2><p class="muted">3 优先探索 · 2 值得尝试 · 1 待验证</p><div id="bars" class="bars"></div></section>
-    <section class="panel"><h2>求职偏好</h2><div id="donut" class="donut" hidden aria-hidden="true"></div><p id="weight-note" class="muted"></p><ul id="preferences"></ul></section>
+<div class="page">
+
+<!-- ============ 封面 ============ -->
+<div class="cover">
+  <div class="kicker">JOB PROFILE REPORT</div>
+  <h1>重庆 · 高中语文教师<br>求职画像与单位推荐报告</h1>
+  <p class="sub">基于你的试讲经历、教学偏好与求职约束整理 ｜ 生成日期 2026年11月7日</p>
+</div>
+
+<div class="meta-strip">
+  <div class="meta-item"><span class="k">目标岗位</span><span class="v">高中语文教师</span></div>
+  <div class="meta-item"><span class="k">城市</span><span class="v">重庆（主城优先）</span></div>
+  <div class="meta-item"><span class="k">学历 / 专业</span><span class="v">本科 · 汉语言文学（师范）</span></div>
+  <div class="meta-item"><span class="k">教师资格</span><span class="v">已取得高中语文</span></div>
+  <div class="meta-item"><span class="k">通勤上限</span><span class="v">单程 60 分钟（公共交通）</span></div>
+</div>
+
+<div class="legend">
+  <span><span class="tag t-ok">✅ 已核实</span> 官方来源写明，可直接采信</span>
+  <span><span class="tag t-warn">⚠️ 需确认</span> 存在风险或需你补充信息</span>
+  <span><span class="tag t-q">❓ 未核实</span> 无法确认，必须自行查证</span>
+  <span><span class="tag t-no">✕ 不匹配</span> 已排除，附原因</span>
+</div>
+
+<div class="callout" style="margin-top:26px;">
+  <b>先看这一条。</b>本次检索到的最新公办机会是《2026重庆国际人才交流大会事业单位公开招聘》（2188 人），<b>报名窗口 11月4日 9:00 — 11月11日 9:00</b>，笔试 11月22日。也就是说：<b>你看到这份报告时，窗口只剩约 4 天</b>。是否够格，取决于一个你还没告诉我的信息——毕业院校层次。这条分叉决定了你三条路里哪条是通的，第 5 节有完整判断。
+</div>
+
+<!-- ============ 1 画像 ============ -->
+<h2><span class="num">01</span>你的求职画像：一句话版本</h2>
+<p class="lede">
+一个<b>专业与资格完全对口、试讲已具备真实教学设计能力、但缺少正式授课经历</b>的本科师范应届生，想在重庆主城做高中语文老师；把「有教研支持、有带教老师、下班后能备课」看得比薪资更重，同时清楚自己不愿意被班主任和晚自习无声吞掉。
+</p>
+
+<div class="cards">
+  <div class="card red">
+    <h4>硬条件（已定的牌）</h4>
+    <ul>
+      <li>汉语言文学（师范），本科应届</li>
+      <li>已取得高中语文教师资格证 ✅</li>
+      <li>专业目录完全对口（0501 中国语言文学类 / 0401 教育学·语文方向）</li>
+      <li>无正式授课经历（最大短板）</li>
+    </ul>
   </div>
-  <div class="grid">
-    <section class="panel"><h2>已有基础</h2><div id="strengths"></div></section>
-    <section class="panel"><h2>方向建议</h2><div id="interests"></div></section>
+  <div class="card green">
+    <h4>软实力（你的差异点）</h4>
+    <ul>
+      <li>会用「换词比较」做文本细读</li>
+      <li>会要求学生回原文找依据</li>
+      <li>先听学生理解，再按卡点追问</li>
+      <li>对工作强度有边界意识，会先问清楚</li>
+    </ul>
   </div>
-  <div class="grid">
-    <section class="panel"><h2>先做一件事</h2><p id="first_action"></p></section>
-    <section class="panel"><h2>待确认</h2><ul id="unknowns"></ul></section>
+  <div class="card amber">
+    <h4>明确约束</h4>
+    <ul>
+      <li>住渝中 / 江北 / 渝北</li>
+      <li>公共交通，单程 ≤ 60 分钟</li>
+      <li>班主任、晚自习、周末上班须先问清</li>
+      <li>薪资暂无底线（谈判空间未定）</li>
+    </ul>
   </div>
-  <details><summary>导入自己的画像</summary>
-    <p class="muted">粘贴 Agent 回复里的完整画像 JSON。内容只在当前页面处理。</p>
-    <textarea id="source" aria-label="画像 JSON" spellcheck="false"></textarea>
-    <button id="load" type="button">更新报告</button><p id="notice" role="status"></p>
-  </details>
-</main>
-<script>
+</div>
+
+<h3>你没说、但会改变结论的一个变量</h3>
+<p style="font-size:14px; margin:6px 0 0;">
+你只说「汉语言文学专业应届毕业生」，没说是哪所学校。这在本轮重庆公办招聘里不是细节，是<b>门槛本身</b>。第 5 节会用两条分支分别给结论，你对照自己的学校选一条看。
+</p>
+
+<!-- ============ 2 已有基础 ============ -->
+<h2><span class="num">02</span>你已有的基础：不是"没有经验"，而是"有片段、缺闭环"</h2>
+<p class="lede">
+很多人会把「没有正式授课经历」等同于「什么都没有」。你的情况不是这样。你那段《荷塘月色》的试讲里，已经出现了三个真教师才会做的动作，值得在面试里主动讲出来。
+</p>
+
+<h3>你的《荷塘月色》试讲，实际展示了什么</h3>
+<div class="quote">
+「我会引导学生把『泻』换成『照』，再结合『月光如流水一般』比较表达效果，并请学生从原文中找依据。」
+</div>
+
+<table>
+  <thead>
+    <tr><th style="width:23%">你做的动作</th><th style="width:26%">对应的教学法</th><th>面试时怎么把它讲成优势</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>把「泻」换成「照」再比</b></td>
+      <td>替换比较法 / 词语品味<br>（语言建构与运用）</td>
+      <td class="tight">「我不是直接告诉学生『泻』更好，而是制造一个可比较的对照，让学生自己感到差别。」——这句话能直接证明你懂"体验优先于结论"。</td>
+    </tr>
+    <tr>
+      <td><b>结合「月光如流水一般」</b></td>
+      <td>语境还原 / 前后文互证</td>
+      <td class="tight">说明你不是孤立讲一个词，而是把词放回句群和全段意境里，这是散文教学的核心动作。</td>
+    </tr>
+    <tr>
+      <td><b>请学生从原文找依据</b></td>
+      <td>文本证据意识<br>（新课标"阅读与鉴赏"要求）</td>
+      <td class="tight">这是评委最想看到的：你有没有把"答案"变成"证据链"。高中语文最怕老师给感受，你能要求依据，说明你知道高中和初中的分界线在哪。</td>
+    </tr>
+    <tr>
+      <td><b>先听学生说，再按卡点调整提问</b></td>
+      <td>学情导向 / 生成性教学</td>
+      <td class="tight">这是你最有说服力的一条。绝大多数应届生试讲是"背流程"，你说的是"看反应再决定下一句"——结构化面试里可以直接答"课堂突发/学生答偏怎么办"。</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="callout neutral">
+<b>但要注意一个落差：</b>《荷塘月色》是统编版<b>必修上册第七单元</b>的散文。这一单元的单元任务指向"景与情的关系""写景散文的审美"，而不仅是单篇词语品味。你在试讲里如果只能讲到"这个词好"，评委会问："这节课的单元位置在哪？学习目标是什么？"——这是你目前最容易被打穿的地方，第 3 节列为 P0。
+</div>
+
+<h3>其余可用的基础</h3>
+<ul class="clean">
+  <li><b>教资已到手</b>：很多民办和国际学校允许「毕业后半年内取得」，你已提前满足，在同等学历的候选人里是明确的加分项。</li>
+  <li><b>专业目录零障碍</b>：重庆公办岗位的专业要求基本写成"本科专业：0401 教育学（语文方向）、0501 中国语言文学类"，你的毕业证可以直接对上，不会卡在专业审查。</li>
+  <li><b>职业判断力</b>：你会主动问班主任、晚自习、周末安排，说明你做过功课。这在民办和机构的面试里是加分项，不是减分项——他们怕的是入职三个月就走的应届生。</li>
+</ul>
+
+<!-- ============ 3 待补能力 ============ -->
+<h2><span class="num">03</span>还需要补的能力：按"会不会卡住你"排序</h2>
+<p class="lede">
+下面按紧急度排，P0 是「不补就会在面试或入职第一个月出问题」，P2 是「入职后半年内补齐即可」。
+</p>
+
+<table>
+  <thead>
+    <tr><th style="width:8%">级别</th><th style="width:24%">缺口</th><th style="width:34%">具体表现（评委/HR 会怎么看出来）</th><th>怎么补（可执行）</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="tag t-no">P0</span></td>
+      <td><b>单元意识 & 目标设计</b></td>
+      <td class="tight">只会讲单篇的好，说不出这篇在哪个单元、单元任务是什么、这节课要让学生"能做什么"。</td>
+      <td class="tight">把必修上/下每个单元的任务抄一遍，给 3 篇课文各写一份「单元位置 + 2 条学习目标 + 1 个主问题」的单页设计。</td>
+    </tr>
+    <tr>
+      <td><span class="tag t-no">P0</span></td>
+      <td><b>限时无生试讲</b></td>
+      <td class="tight">你练过教学片段，但没在有时间压力、没有真实学生回应的条件下跑完整流程（通常 10–15 分钟）。</td>
+      <td class="tight">每周录 2 次 10 分钟无生试讲视频，自己回看：前 90 秒有没有切入、有没有超过 3 个问题、板书是否成形。</td>
+    </tr>
+    <tr>
+      <td><span class="tag t-warn">P1</span></td>
+      <td><b>完整教学闭环</b></td>
+      <td class="tight">无授课经历＝没经历"备课→上课→批改→讲评→调整"一整轮。高中语文一个班的作文批改量是真实体力活。</td>
+      <td class="tight">争取一段 1–2 个月的代课/实习/机构兼职，哪怕只带一个班一个单元，也要完整走完批改和讲评。</td>
+    </tr>
+    <tr>
+      <td><span class="tag t-warn">P1</span></td>
+      <td><b>高考题型体系</b></td>
+      <td class="tight">高中语文的日常不是讲散文，是信息类文本、文学类文本、文言文、语用、作文五条线并行。</td>
+      <td class="tight">近 3 年重庆高考真题各做一遍，按五条线整理"常见设问 + 答题路径"笔记，这同时是机构笔试的复习材料。</td>
+    </tr>
+    <tr>
+      <td><span class="tag t-warn">P1</span></td>
+      <td><b>班级管理与家长沟通</b></td>
+      <td class="tight">零经验。若岗位隐含班主任，这会直接决定你第一学期是否撑得住。</td>
+      <td class="tight">先不急着补技能，先在第 7 节把"是否强制班主任"问清楚，再决定要不要投入。</td>
+    </tr>
+    <tr>
+      <td><span class="tag t-q">P2</span></td>
+      <td><b>说课与结构化面试</b></td>
+      <td class="tight">公办面试常是「试讲 + 结构化」，民办常是「笔试 + 试讲 + 面谈」，形式不同，准备方式不同。</td>
+      <td class="tight">按目标单位类型各准备一套：公办练结构化（课堂管理、家校沟通、职业认知），民办练面谈（为什么来、能带什么）。</td>
+    </tr>
+    <tr>
+      <td><span class="tag t-q">P2</span></td>
+      <td><b>时间管理体系</b></td>
+      <td class="tight">你希望下班后能备课，但高中语文的真实节奏是早读、正课、晚自习、作文批改叠加。</td>
+      <td class="tight">建立"模板化备课"：同一单元共用一套课件骨架 + 分层作业模板，把每晚备课压到 1 小时内。</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ============ 4 岗位优先级 ============ -->
+<h2><span class="num">04</span>适合优先探索的岗位：三条路，顺序有讲究</h2>
+<p class="lede">
+你的最优解不是"广撒网"，而是<b>先走通能立刻拿到面试和反馈的那条，同时保留公办的长线</b>。理由：你现在最缺的不是 offer，是"站上讲台被真实评价"的次数。
+</p>
+
+<h3>路线 A：民办高中语文 —— 首选，匹配度最高</h3>
+<ul class="clean">
+  <li><b>为什么先走这条：</b>本科可投、不卡研究生、招聘以"笔试 + 试讲 + 面谈"为主——正好是你唯一有准备的环节。多数民办有师徒带教和新教师培训，符合你"要成长支持"的核心诉求。</li>
+  <li><b>你的胜率点：</b>试讲里的"换词比较 + 找依据 + 按卡点追问"是民办最看重的课堂感；教资已到手免去"半年内取证"的不确定性。</li>
+  <li><b>要提前接受的：</b>民办高中普遍强度高于公办（早读、晚自习、月考排名压力），"下班后备课"的时间要谈清楚再签。薪资结构通常是"基本 + 课时 + 绩效 + 年终（部分 15 薪）"。</li>
+</ul>
+
+<h3>路线 B：教育机构高中语文 —— 次选，最快拿到反馈和教研训练</h3>
+<ul class="clean">
+  <li><b>为什么值得投：</b>机构有成熟的教研体系和师训流程，能在 3 个月内把你"缺的闭环"用高频授课快速补上；面试流程短，通常 1–2 周出结果，能给你真实的试讲反馈。</li>
+  <li><b>硬冲突（必须你自己决定）：</b>教培的主营时段是<b>周末 + 工作日晚间 + 寒暑假</b>。这与你"下班后留时间备课学习""周末安排要问清楚"直接冲突——不是谈条件能解决的，是行业作息本身。若你把作息稳定性排在第一位，这条路线应降为"1–2 年的跳板备选"。</li>
+</ul>
+
+<h3>路线 C：公办高中语文 —— 长线，但今年有窗口</h3>
+<ul class="clean">
+  <li><b>优势：</b>编制、稳定性、教研组体系、寒暑假，是最贴合你长期诉求的形态。</li>
+  <li><b>现实门槛（本次检索确认）：</b>重庆主城面向应届的公办教师岗，大量写「研究生学历及相应学位」；允许本科报考的岗位，几乎都附加"四选一"条件（见第 5 节）。这不是个别学校，是普遍写法。</li>
+  <li><b>策略：</b>若你符合条件，立刻报本次批次；若不符合，把目标调整为<b>"本科友好的公开招聘岗"</b>——这类岗位以笔试（《职业能力倾向测验》D 类）+ 面试为主，不设附加条件，但更多落在初中或区县。也可以先进公办初中，未来校内转岗高中（需问清学校的转岗惯例）。</li>
+</ul>
+
+<div class="callout">
+<b>关于"先教初中"这件事。</b>你说更想教高中。但如果主城公办高中对本科关闭，公办初中有两个务实价值：一是进编制、进教研体系；二是初高中语文的知识与教法有连续性。代价是转岗不确定。<b>如果你把"高中"当成不可让的条件，就走 A / B；如果"编制 + 成长"优先于"学段"，C 的初中岗值得认真看。</b>这个排序只有你能定。
+</div>
+
+<!-- ============ 5 推荐单位 ============ -->
+<h2><span class="num">05</span>推荐单位与官方入口（含匹配度与核实状态）</h2>
+<p class="lede">
+下面每一家都有可查的官方来源。<b>"是否仍在招"和"你是否满足条件"是两件事，我分开标</b>——前者看公告时效，后者看资格门槛。凡我没能核实到的，一律标 ❓，不做推测。
+</p>
+
+<h3>5.1 公办：官方渠道 + 本次在招的具体岗位</h3>
+
+<table>
+  <thead>
+    <tr><th style="width:20%">入口 / 单位</th><th style="width:30%">官方来源</th><th style="width:12%">是否在招</th><th style="width:38%">你能否报（关键门槛）</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>重庆市人力资源和社会保障局</b><br><span class="tight">全市事业单位招聘总入口，教师编全在这里发</span></td>
+      <td class="tight">公告：<a href="https://rlsbj.cq.gov.cn/zwxx_182/sydw/sydwgkzp2026/202611/t20261101_16332968.html" target="_blank">rlsbj.cq.gov.cn/zwxx_182/sydw/sydwgkzp2026/202611/t20261101_16332968.html</a><br>报名统计：<a href="https://rlsbj.cq.gov.cn/ywzl/rsks/sydwks/202611/t20261106_16366963.html" target="_blank">…/202611/t20261106_16366963.html</a></td>
+      <td><span class="tag t-ok">✅ 在招</span><br><span class="tight">11/4 9:00 – 11/11 9:00<br>笔试 11/22</span></td>
+      <td class="tight"><b>❓ 取决于院校与附加条件。</b>本科岗普遍要求"四选一"：①国家奖学金（不含励志）或省级以上优秀毕业生/三好学生；②"世界一流学科"建设学科毕业；③教育部直属师范大学师范类专业毕业；④世界前 200 境外高校。<br><b>若你是六所部属师范大学师范专业 → 满足第③条，通道打开；若你是市属院校 → 需第①或②条，否则本次批次基本无岗可报。</b></td>
+    </tr>
+    <tr>
+      <td><b>重庆市两江育才中学校</b><br><span class="tight">公办高中 · 两江新区</span></td>
+      <td class="tight">岗位来自上述 2188 人公告岗位表；报名统计页可查实时人数</td>
+      <td><span class="tag t-ok">✅ 在招</span><br><span class="tight">高中语文教师岗 56<br>名额 1，截至 11/6 报名 3 人</span></td>
+      <td class="tight">❓ 学历/附加条件未在统计页显示，须打开岗位表逐条核对。<b>竞争比 3:1，是本次主城高中语文里相对可打的一个。</b></td>
+    </tr>
+    <tr>
+      <td><b>重庆市鲁能巴蜀中学校</b><br><span class="tight">公办高中 · 两江新区</span></td>
+      <td class="tight">同上</td>
+      <td><span class="tag t-ok">✅ 在招</span><br><span class="tight">高中语文教师岗 99<br>名额 1，截至 11/6 报名 1 人</span></td>
+      <td class="tight">❓ 同上。<b>报名人数偏少，但学校层级较高，门槛大概率也高，务必先核学历。</b></td>
+    </tr>
+    <tr>
+      <td><b>重庆南开三十二中学校</b><br><span class="tight">公办高完中 · 沙坪坝双碑</span></td>
+      <td class="tight">学校公告经市人社局公告发布；轨道 1 号线双碑站可达</td>
+      <td><span class="tag t-ok">✅ 在招</span><br><span class="tight">高中语文 1 名</span></td>
+      <td class="tight"><span class="tag t-no">✕ 学历不符</span> 明确要求<b>研究生学历及相应学位</b> + 应届 + 高中语文教资。你本科 → 不可报。列在此处是为了让你看清主城公办高中的实际门槛线。</td>
+    </tr>
+    <tr>
+      <td><b>重庆两江中学校（西南政法大学附中）</b></td>
+      <td class="tight">经市人社局同一公告发布</td>
+      <td><span class="tag t-ok">✅ 在招</span><br><span class="tight">本次仅高中数/生/物</span></td>
+      <td class="tight"><span class="tag t-no">✕ 双不符</span> 明确要求"2027 年高校<b>研究生</b>学历"，且本次无语文岗。</td>
+    </tr>
+    <tr>
+      <td><b>重庆市教育委员会 · 教师公开招聘专栏</b><br><span class="tight">区县教育系统招聘公告的官方汇总口</span></td>
+      <td class="tight"><a href="https://jw.cq.gov.cn/zwgk_209/fdzdgknr/ywjy/jsgl/jsgkzp/" target="_blank">jw.cq.gov.cn/zwgk_209/fdzdgknr/ywjy/jsgl/jsgkzp/</a></td>
+      <td><span class="tag t-ok">✅ 持续更新</span></td>
+      <td class="tight">区县（如秀山、万州、铜梁）面向应届的教师考核招聘会在这里发。✅ 可长期盯，尤其关注<b>主城区县</b>批次。</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="callout neutral">
+<b>一句实话：</b>本次 2188 人批次里，我逐条看到的<b>主城高中语文岗实例，写的都是研究生门槛</b>；本科可报的岗位，附带的"四选一"条件非常硬。如果你不是部属师范或没有国家奖学金/省级荣誉，<b>不建议把这一批当成主战场</b>，把精力放到 5.2 和 5.3，同时准备明年 1 月起的区县批次。
+</div>
+
+<h3>5.2 民办学校</h3>
+
+<table>
+  <thead>
+    <tr><th style="width:19%">单位</th><th style="width:29%">官方招聘入口</th><th style="width:11%">是否在招</th><th style="width:12%">匹配度</th><th style="width:29%">你能否报 / 关键条件</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>重庆市巴蜀常春藤学校</b><br><span class="tight">常春藤教育集团<br>渝北空港 · 另有江北、巴南校区</span></td>
+      <td class="tight">官方招聘页：<a href="http://www.biacademy.cn/html/ctzy/Index_8.shtml" target="_blank">www.biacademy.cn/html/ctzy/Index_8.shtml</a><br>投递：bsivy@vip.163.com<br>（标题：应聘学段学科+应届/非应届+姓名+毕业学校）</td>
+      <td><span class="tag t-ok">✅ 在招</span><br><span class="tight">2027 届秋季招聘<br>报名自 2026-10-19 起</span></td>
+      <td><div class="bar-wrap"><div class="bar-bg"><div class="bar" style="width:92%"></div></div><span class="tight">高</span></div></td>
+      <td class="tight"><span class="tag t-ok">✅ 可报</span> "全日制本科及以上"、2027 年 7 月前取得双证、<b>毕业后半年内取得教资</b>（你已提前满足）。<b>精品高中明确招语文</b>。语文岗需普通话二级甲等 ❓ 请按证书确认。<br><span class="tag t-warn">⚠️</span> 邮件投递无截止日说明，属"滚动筛选"，早投早筛。</td>
+    </tr>
+    <tr>
+      <td><b>重庆德普外国语学校</b><br><span class="tight">民办 · 巴南区龙洲湾<br>（重庆外国语学校龙洲湾校区）</span></td>
+      <td class="tight">校招页：<a href="https://jobs.51job.com/campus/caAGVWO1EyVmEOaARjVTA.html" target="_blank">jobs.51job.com/campus/caAGVWO1EyVmEOaARjVTA.html</a></td>
+      <td><span class="tag t-warn">⚠️ 部分在招</span><br><span class="tight">公开校招 8 岗，未见高中语文</span></td>
+      <td><div class="bar-wrap"><div class="bar-bg"><div class="bar mid" style="width:55%"></div></div><span class="tight">中</span></div></td>
+      <td class="tight">本科可投（部分岗位标"本科/应届"）。<b>但两处风险：</b>①当前公开岗位无高中语文，仅见初中语文在第三方平台挂出（时间较早，❓ 是否仍有效）；②<b>巴南龙洲湾距你住处较远</b>，轨道 3 号线学堂湾站一带，从渝中/江北出发单程大概率接近或超过 60 分钟，<b>必须先实测再投</b>。</td>
+    </tr>
+    <tr>
+      <td><b>重庆市巴川中学校</b><br><span class="tight">民办 · 铜梁区</span></td>
+      <td class="tight">官方招聘公告经高校就业网发布；新鸥鹏·巴川系</td>
+      <td><span class="tag t-ok">✅ 在招</span><br><span class="tight">2026–2027 年度招聘，含语文</span></td>
+      <td><div class="bar-wrap"><div class="bar-bg"><div class="bar low" style="width:35%"></div></div><span class="tight">低</span></div></td>
+      <td class="tight"><span class="tag t-no">✕ 不建议</span> 校招条件写"①部属师范大学应届毕业生；②985/211 及全球名校应届毕业生"——<b>若你是西南大学等 211/部属院校则符合，否则不符合</b>。且校区在<b>铜梁区</b>，通勤 60 分钟上限完全无法满足，需住校。列出仅为说明：它家高中薪资 18–40 万在重庆属高位，是 2–3 年后的可选跳板。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>5.3 教育机构</h3>
+
+<table>
+  <thead>
+    <tr><th style="width:19%">机构</th><th style="width:27%">官方招聘入口</th><th style="width:11%">是否在招</th><th style="width:12%">匹配度</th><th style="width:31%">你能否报 / 关键条件</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>新东方 · 重庆学校</b></td>
+      <td class="tight"><a href="https://zhaopin.xdf.cn/" target="_blank">zhaopin.xdf.cn</a><br><span class="tight">2027 全球联合校招，教师岗含"高中教师"</span></td>
+      <td><span class="tag t-ok">✅ 在招</span><br><span class="tight">毕业时间 2026.1–2027.12 均可</span></td>
+      <td><div class="bar-wrap"><div class="bar-bg"><div class="bar" style="width:85%"></div></div><span class="tight">高</span></div></td>
+      <td class="tight"><span class="tag t-ok">✅ 可报</span> 本科起、专业不限、<b>教资可入职后考取</b>（你已有＝优势）。集团统招统培，有师训通道，符合你"要教研支持"的诉求。<br><span class="tag t-warn">⚠️</span> 高中班课以晚间+周末为主，作息冲突需当面问清；重庆具体校区未定 → 通勤待确认。</td>
+    </tr>
+    <tr>
+      <td><b>好未来 · 学而思（重庆）</b></td>
+      <td class="tight"><a href="https://job.100tal.com/" target="_blank">job.100tal.com</a><br><span class="tight">公众号"好未来招聘"→加入我们→校园招聘</span></td>
+      <td><span class="tag t-ok">✅ 在招</span><br><span class="tight">2027 届秋招，重庆为设点城市</span></td>
+      <td><div class="bar-wrap"><div class="bar-bg"><div class="bar" style="width:82%"></div></div><span class="tight">高</span></div></td>
+      <td class="tight"><span class="tag t-ok">✅ 可报</span> 2024–2027 届、本硕均可、专业不限、可入职后考教资。<b>流程是"简历→初试(试讲)→复试→培训→offer"，试讲权重极高</b>——你的强项正好在这。有"青苗训练营+导师带教"。</td>
+    </tr>
+    <tr>
+      <td><b>心田花开（重庆）</b><br><span class="tight">总部在江北区，语文是其核心特色</span></td>
+      <td class="tight"><a href="https://www.xintianhuakai.cn" target="_blank">www.xintianhuakai.cn</a><br><span class="tight">公众号"心田花开招聘"→加入我们</span></td>
+      <td><span class="tag t-ok">✅ 在招</span><br><span class="tight">2027 届秋招，重庆有语文教师岗</span></td>
+      <td><div class="bar-wrap"><div class="bar-bg"><div class="bar mid" style="width:72%"></div></div><span class="tight">中高</span></div></td>
+      <td class="tight"><span class="tag t-ok">✅ 可报</span> 语文教师属"优教计划"，首年优秀者保底 11K/月；一线教师 10–20 万/年。师徒制带教、90% 管理岗内部提拔。<b>通勤最优</b>（总部江北）。<br><span class="tag t-warn">⚠️</span> 主营"情商语文"，学段偏 3–18 岁素质课程，<b>不等于高中应试语文</b>，与你"教高中"的目标有偏差；且周末+寒暑假为核心工作时段。</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="footnote">
+注：以上"是否在招"依据检索当日（2026-11-07）公开页面判断。民办与机构采用滚动招聘，岗位随时关闭或新增，投递前请以官方页面实时状态为准。我未列出任何无法在官方或校招平台找到来源的单位。
+</p>
+
+<!-- ============ 6 渠道 ============ -->
+<h2><span class="num">06</span>该盯哪几个入口：一张长期清单</h2>
+<p class="lede">
+重庆的教师招聘是"多批次、分散发"的：市级统一批 + 区县自主批 + 学校自主招聘，三条线并行。下面四个入口覆盖了绝大部分可靠来源。
+</p>
+
+<table>
+  <thead><tr><th style="width:26%">入口</th><th style="width:34%">链接</th><th>盯什么 / 什么时候看</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><b>重庆市人社局 · 事业单位公开招聘</b></td>
+      <td class="tight"><a href="https://rlsbj.cq.gov.cn/" target="_blank">rlsbj.cq.gov.cn</a> → "事业单位公开招聘"栏</td>
+      <td class="tight">全市最大批次都在这。节奏参考：2026 年 <b>1月30日发一季度（1378人）、8月28日发三季度（719人）、11月1日发专项引才（2188人）</b> → 2027 年 1 月底大概率再发一季度批，<b>那是你本科身份最可能命中的窗口</b>。</td>
+    </tr>
+    <tr>
+      <td><b>重庆市教委 · 教师公开招聘</b></td>
+      <td class="tight"><a href="https://jw.cq.gov.cn/zwgk_209/fdzdgknr/ywjy/jsgl/jsgkzp/" target="_blank">jw.cq.gov.cn/…/jsgl/jsgkzp/</a></td>
+      <td class="tight">区县教育系统考核招聘公告汇总，注意抓"面向 2027 届高校毕业生"字样。</td>
+    </tr>
+    <tr>
+      <td><b>重庆市普通高校毕业生智慧就业平台</b></td>
+      <td class="tight"><a href="https://24365.cq.smartedu.cn" target="_blank">24365.cq.smartedu.cn</a><br><a href="https://www.cqbys.com" target="_blank">cqbys.com</a></td>
+      <td class="tight">校招宣讲会、双选会、民办与机构岗位都在这发（新东方、学而思、德普的校招信息均在此出现）。<b>建议每周看一次</b>，宣讲会现场投递往往免简历筛选。</td>
+    </tr>
+    <tr>
+      <td><b>目标学校官方公众号</b></td>
+      <td class="tight">如"铜梁中学校""巴蜀常春藤"等学校号</td>
+      <td class="tight">学校常先在自己号上发"预报名"，再走区县正式公告。<b>提前投递能进池子</b>，但一切以正式公告为准。</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ============ 7 核实清单 ============ -->
+<h2><span class="num">07</span>决定前必须核实的 14 个问题（可直接照问）</h2>
+<p class="lede">
+前四类是你自己要在报名前查清的资格问题，后三类是面试或签约前必须向对方问清的。建议原样打印带着去问。
+</p>
+
+<h3>A. 资格类（报名前自查，问自己）</h3>
+<table>
+  <thead><tr><th style="width:6%">#</th><th style="width:32%">要核实的</th><th>为什么关键 / 怎么查</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><b>毕业院校是否六所部属师范大学</b></td><td class="tight">北师大、华东师大、东北师大、华中师大、陕西师大、西南大学。若是且为师范专业 → 主城考核招聘"四选一"中的第③条满足，通道完全打开。这一条决定第 5 节的结论走向。</td></tr>
+    <tr><td>2</td><td><b>是否有国家奖学金 / 省级优秀毕业生 / 省级三好学生</b></td><td class="tight">这是本科报考主城岗位的另一条硬通道（注意：<b>国家励志奖学金不算</b>）。若有，可在岗位表里筛"本科可报"的岗。</td></tr>
+    <tr><td>3</td><td><b>普通话等级证书</b></td><td class="tight">语文岗普遍要求<b>二级甲等</b>。已通过语文教资认定一般意味着已具备二甲，但报名材料要交证书，请翻出原件核对等级与编号。</td></tr>
+    <tr><td>4</td><td><b>"应届"口径</b></td><td class="tight">若你是 2027 届 → 直接符合。若你是 2026 届，重庆多数公告把"择业期内（2 年）未就业"也算应届，但个别岗位要求"当年应届"，需逐条看。</td></tr>
+  </tbody>
+</table>
+
+<h3>B. 岗位本身（打开岗位表逐条看）</h3>
+<table>
+  <thead><tr><th style="width:6%">#</th><th style="width:32%">要核实的</th><th>注意点</th></tr></thead>
+  <tbody>
+    <tr><td>5</td><td><b>学历/学位要求</b></td><td class="tight">同一批次内不同学校要求不一致：有的写"研究生学历及相应学位"，有的写"本科以上学历及相应学位"。<b>不能按批次整体判断，必须看具体岗位行。</b></td></tr>
+    <tr><td>6</td><td><b>教资学段要求</b></td><td class="tight">岗位多写"取得高中以上语文学科教师资格证"。你持高中语文证 → 报高中、初中岗通常都满足；<b>反向不成立</b>（初中证不能报高中）。这是你的一个隐性优势。</td></tr>
+    <tr><td>7</td><td><b>最低服务期</b></td><td class="tight">重庆岗位常见"聘用后在本区县服务满 3 年"，公费师范生岗可能 6 年。<b>3 年内不能调动</b>，等于锁定了你的通勤和居住选择。</td></tr>
+    <tr><td>8</td><td><b>编制性质</b></td><td class="tight">"事业单位编制"与"人事代理/合同制/员额制"完全不同。民办则为纯合同制。问清这四个字。</td></tr>
+  </tbody>
+</table>
+
+<h3>C. 工作强度（面试必问，直接决定你后不后悔）</h3>
+<table>
+  <thead><tr><th style="width:6%">#</th><th style="width:32%">要问的</th><th>建议问法</th></tr></thead>
+  <tbody>
+    <tr><td>9</td><td><b>是否必须担任班主任</b></td><td class="tight">"新入职语文老师第一年是否安排班主任？如果安排，是副班主任过渡还是直接带班？"（问"过渡机制"比问"要不要"更容易得到真话）</td></tr>
+    <tr><td>10</td><td><b>晚自习频次与结束时间</b></td><td class="tight">"语文老师一周几个晚自习？到几点？"高中普遍 2–4 次/周、21:00 后结束。这直接挤压你说的"下班后备课"时间。</td></tr>
+    <tr><td>11</td><td><b>周末与寒暑假安排</b></td><td class="tight">"周末补课/月考监考/家长会的频次？寒暑假是否有集中培训或补课？"——你明确说要问清，这条一定问。</td></tr>
+  </tbody>
+</table>
+
+<h3>D. 成长与待遇</h3>
+<table>
+  <thead><tr><th style="width:6%">#</th><th style="width:32%">要问的</th><th>判断标准</th></tr></thead>
+  <tbody>
+    <tr><td>12</td><td><b>带教老师与教研机制</b></td><td class="tight">问："新老师有指定的带教师傅吗？听课频率多少？有集体备课吗？"<b>有师傅+每周集体备课 = 真带教；只有"新教师培训" = 走过场。</b>这是你最看重的条件，务必问具体机制而非有没有。</td></tr>
+    <tr><td>13</td><td><b>薪资结构</b></td><td class="tight">问清"基本工资 / 课时费 / 绩效 / 年终"四块各多少，以及<b>试用期是否打折</b>。民办常见"15 薪"表述，要问清第 13–15 个月是固定发放还是与考核挂钩。你目前无薪资目标，建议先拿到 1–2 个真实数字再定底线。</td></tr>
+    <tr><td>14</td><td><b>具体校区地址 + 通勤实测</b></td><td class="tight"><b>这一条你已明确要求列为待确认。</b>集团校常有多个校区（如常春藤有空港/江北/巴南），录用后可能被分配。务必问"入职后是否可能调整校区"，并在拿到地址后<b>按真实上下班时段实测一次通勤</b>，不要只看地图距离。</td></tr>
+  </tbody>
+</table>
+
+<!-- ============ 8 行动 ============ -->
+<h2><span class="num">08</span>接下来 30 / 60 / 90 天</h2>
+
+<h3>本周（11月7日 – 11月11日）｜最高优先级：4 天内做完</h3>
+<ol class="steps">
+  <li><b>今天先做一件事：</b>打开 <a href="https://rlsbj.cq.gov.cn/zwxx_182/sydw/sydwgkzp2026/202611/t20261101_16332968.html" target="_blank">2188 人公告页</a>，下载岗位表，用"高中语文"筛选，逐行看<b>学历</b>和<b>其他条件</b>两列。若出现"本科以上"且附加条件你满足 → <b>11月11日 9:00 前完成报名</b>（走"渝快办"登录，需备电子证件照 jpg、20kb 以下）。若全部要求研究生 → 直接跳到下一步，不要在这里耗时间。</li>
+  <li><b>投巴蜀常春藤：</b>按官方要求准备两个附件（简历 + 证书合集含一张生活照），邮件标题写"高中语文+应届+你的姓名+毕业学校"，发至 bsivy@vip.163.com。这是当前匹配度最高、且本科明确可投的一个。</li>
+  <li><b>完成 3 家机构网申：</b>新东方（zhaopin.xdf.cn 选重庆）、学而思（job.100tal.com）、心田花开（公众号）。这一步几乎零成本，且能最快换来"试讲被评价"的机会。</li>
+</ol>
+
+<h3>11 月内｜把"没有授课经历"这个洞补出形状</h3>
+<ol class="steps">
+  <li>录 2 支 10 分钟无生试讲视频：一篇《荷塘月色》（把你现有的设计打磨成完整流程），一篇换文体（建议《赤壁赋》或一首古诗），自己回看三件事：前 90 秒有没有切入、问题是否超过 3 个、板书是否成形。</li>
+  <li>给必修上册 3 个单元各写一页"单元位置 + 2 条学习目标 + 1 个主问题"。这是补 P0 缺口最省力的方式，也是面试被问"这节课在单元里什么位置"时的答案。</li>
+  <li>留意 24365 平台上的宣讲会，能到现场就到现场——现场投递往往免简历筛选。</li>
+</ol>
+
+<h3>12 月 – 明年 1 月｜切换主战场</h3>
+<ol class="steps">
+  <li>民办/机构的面试集中在 12 月，试讲是核心环节，把 11 月录的视频迭代成 3 个成熟课例。</li>
+  <li>同时开始备《职业能力倾向测验》D 类（中学教师）：2027 年一季度区县批大概率 1 月底发公告、春季笔试。<b>这是你本科身份命中率最高的一批，值得提前两个月准备。</b></li>
+  <li>持续盯区县教委公告（秀山、万州、潼南等已发过 2027 届批次，说明区县批次会陆续铺开）。注意区县岗多带 3–6 年服务期，且通勤不可行 → 需评估是否接受住校。</li>
+</ol>
+
+<!-- ============ 9 局限 ============ -->
+<h2><span class="num">09</span>这份报告的边界（请务必读）</h2>
+<ul class="clean">
+  <li><b>信息时效：</b>所有"在招"判断基于 2026年11月7日 的公开页面。重庆招聘批次密集，11月11日后本文的公办部分会大面积失效。</li>
+  <li><b>三个未确认变量影响结论强度：</b>①你的毕业院校层次（决定主城公办是否可报）；②普通话等级（语文岗硬门槛）；③你填的"应届"具体是哪一届。这三点我按"待确认"处理，没有替你假设。</li>
+  <li><b>未核实项已标 ❓：</b>包括各 2188 批次岗位的逐条学历要求、德普当前是否有高中语文在招、各单位的实际通勤时间。这些必须你本人打开原始公告和地图核实。</li>
+  <li><b>我没有做的事：</b>没有虚构任何单位、岗位或链接；没有把"看到过"当成"正在招"；巴川中学虽在招语文，但因院校门槛与铜梁通勤被我标为不匹配——排除理由都写在表里，你可以自己复核。</li>
+  <li><b>关于薪资：</b>你暂无具体目标，所以本报告只给区间参考（机构 10–20 万/年、民办高中 15–40 万区间的高位属名校特例）。建议拿到 2 个真实 offer 后再定底线，比现在拍一个数字更靠谱。</li>
+</ul>
+
+<footer>
+  求职画像报告 · 重庆高中语文教师 ｜ 生成于 2026年11月7日 ｜ 基于公开官方招聘信息整理，不构成录用承诺<br>
+  所有单位与链接均来自可查官方来源或官方校招平台，"是否仍在招""是否满足条件"两项结论须以原始公告为准。
+</footer>
+
+</div>
+<style>  [hidden]{display:none!important}
+  .report-nav{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0}
+  .report-nav a{padding:5px 10px;background:var(--grey-soft);border-radius:4px;font-size:13px}
+  .recommendations{display:grid;gap:16px}
+  .unit{border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:4px;padding:18px 20px}
+  .unit h3{margin:6px 0 10px}
+  .unit-links{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+  .unit-links a{display:inline-block;padding:7px 12px;background:var(--accent);color:white;border:0;border-radius:4px}
+  .unit-links a.secondary{background:var(--grey-soft);color:var(--ink-2)}
+  .plot-row{display:grid;grid-template-columns:minmax(100px,1fr) minmax(80px,2fr) auto;gap:12px;align-items:center;margin:14px 0;font-size:14px}
+  .plot-row .bar-bg{height:12px}
+  .chart-box{border:1px solid var(--line);padding:16px 20px;margin:16px 0}
+  .chart-box h3{margin:0 0 8px}
+  .key{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px}
+  .print-button{font:inherit;border:1px solid var(--line);background:white;border-radius:4px;padding:4px 10px;cursor:pointer;color:var(--ink-2)}
+  .cards{grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr))}
+  .card p{font-size:13.5px;margin:5px 0;overflow-wrap:anywhere}
+  section{scroll-margin-top:12px}
+  .unit p{font-size:14px}
+  .status-message{font-size:13px;color:var(--ink-3)}
+  @media(max-width:520px){.page{padding:24px 16px}.plot-row{grid-template-columns:90px 1fr auto;gap:7px}h1{font-size:25px}}
+  @media print{.report-nav,.print-button{display:none}.unit{break-inside:avoid}}
+</style><script>
+const reportLayout = "\n<div class=\"cover\"><div class=\"kicker\" id=\"report-mode\">JOB PROFILE REPORT</div><h1 id=\"report-title\"></h1><p class=\"sub\" id=\"report-sub\"></p></div>\n<div id=\"load-message\" class=\"callout neutral\" hidden role=\"status\"></div><div id=\"report-content\">\n<div id=\"metadata\" class=\"meta-strip\"></div>\n<section><h2><span class=\"num\">01</span>你的求职画像与需求分析</h2><p class=\"lede\" id=\"profile\"></p><div class=\"callout neutral\" id=\"decision\"></div><dl id=\"preferences\" class=\"kv\"></dl></section>\n<section><h2><span class=\"num\">02</span>你已有的基础与经历依据</h2><div id=\"strengths\" class=\"cards\"></div></section>\n<section><h2><span class=\"num\">03</span>还需要补充和验证的能力</h2><div id=\"development\"></div></section>\n<section><h2><span class=\"num\">04</span>适合优先探索的岗位方向</h2><p class=\"footnote\">3 优先探索 · 2 值得尝试 · 1 待验证。根据当前经历与兴趣给出探索等级。</p><div id=\"bars\"></div><div id=\"interests\"></div></section>\n<section><h2><span class=\"num\">05</span>推荐单位与招聘来源</h2><div id=\"recommendations\" class=\"recommendations\"></div></section>\n<section><h2><span class=\"num\">06</span>可以继续查看的招聘入口</h2><div id=\"sources\"></div></section>\n<section><h2><span class=\"num\">07</span>决定前需要核实的问题</h2><ul id=\"unknowns\" class=\"clean\"></ul></section>\n<section><h2><span class=\"num\">08</span>接下来怎么行动</h2><div class=\"callout\" id=\"first-action\"></div><ol id=\"plan\" class=\"steps\"></ol></section>\n<section><h2><span class=\"num\">09</span>报告依据与待更新事项</h2><p class=\"footnote\" id=\"footer-note\"></p></section>\n<footer><button type=\"button\" id=\"print\" class=\"print-button\">打印 / 保存为 PDF</button></footer></div>\n";
+
+
 const demo = {
-  status: 'ready',
-  profile: '数学专业应届毕业生，做过 Excel 销量分析，也给同学讲过函数单调性。对数据分析和数学教学都感兴趣，希望在重庆工作，并在下班后留出学习时间。',
-  strengths: [
-    {name:'数据汇总', evidence:'做过 Excel 销量分析课程项目。', application:'尝试周报制作和基础数据分析。'},
-    {name:'数学讲解', evidence:'给同学讲过函数单调性。', application:'尝试数学答疑或微试讲。'}
+  "status": "ready",
+  "profile": "按刚才的示例整理：汉语言文学专业应届毕业生，以重庆的高中语文教师为主要探索方向。练习过《荷塘月色》试讲，尚未提供正式授课经历。希望工作中有教研或带教支持，并保留备课、学习时间。",
+  "decision": "你目前最明确的教学线索，是用“泻”与“照”的对读，引导学生回到原文解释语言效果。初步可优先了解高中语文教学岗位，再用一次完整微试讲验证提问、回应和学习效果检查。单位推荐先看学科和应届生条件，再确认带教、班主任及晚自习安排。教资、毕业年份和出发位置未填写，因此入职资格和通勤都待核实。",
+  "strengths": [
+    {
+      "name": "文本细读的教学准备",
+      "evidence": "练习《荷塘月色》试讲时，设计过“泻”与“照”的换词比较。",
+      "application": "可作为语文教师试讲中展示语言分析与任务设计的一段材料。"
+    },
+    {
+      "name": "用原文支持解释",
+      "evidence": "要求学生结合“月光如流水一般”说明表达效果，并从原文寻找依据。",
+      "application": "可以继续打磨成“问题—学生回答—回到文本—再表达”的完整课堂片段。"
+    },
+    {
+      "name": "关注学生的理解过程",
+      "evidence": "示例中表达了听学生说出理解、再根据卡点调整提问的教学兴趣。",
+      "application": "适合用试讲和听众反馈进一步验证课堂引导能力。"
+    }
   ],
-  interests: [
-    {role:'数据分析', score:3, level:'优先探索', daily_work:'整理业务数据并解释图表。', reason:'有 Excel 项目经历，也明确表示感兴趣。', to_verify:'是否喜欢核对口径和解释结论。', next_step:'把课程项目整理成一页分析报告。'},
-    {role:'数学教学', score:3, level:'优先探索', daily_work:'备课、讲解和答疑。', reason:'有同伴讲解经历，也明确表示感兴趣。', to_verify:'是否喜欢准备讲稿并根据反馈调整讲法。', next_step:'完成一次函数单调性微试讲。'}
+  "interests": [
+    {
+      "role": "高中语文教学",
+      "score": 3,
+      "level": "优先探索",
+      "daily_work": "围绕教材备课、设计阅读任务、讲解与检查学生理解，具体职责按学校岗位核实。",
+      "reason": "目标岗位明确，且已有相关试讲准备和文本分析任务。",
+      "to_verify": "是否能在限定时间内组织完整教学，并根据学生的不同回答继续引导。",
+      "next_step": "录一段 10 分钟《荷塘月色》微试讲，包含导入、换词任务、学生可能的异议和一道迁移题。"
+    },
+    {
+      "role": "语文教学助理 / 答疑",
+      "score": 2,
+      "level": "值得尝试",
+      "daily_work": "按具体岗位安排协助准备教学材料、答疑和整理学习反馈。",
+      "reason": "有关注学生理解和调整讲法的兴趣，可通过辅助任务补充实际经历。",
+      "to_verify": "是否愿意处理具体答疑和反馈记录，实际职责是否与教学目标一致。",
+      "next_step": "选一段学生的阅读分析答案，写出一条有文本依据的点评和一个后续追问。"
+    },
+    {
+      "role": "语文教研 / 内容研发",
+      "score": 1,
+      "level": "待验证",
+      "daily_work": "根据岗位要求编写教案、题目或讲义，并核对答案和材料。",
+      "reason": "换词比较提供了任务设计线索，目前尚未提供独立编写完整讲义的经历。",
+      "to_verify": "是否喜欢持续修改教学材料和答案解释。",
+      "next_step": "把换词任务做成一页讲义，包含问题、可能答案、文本依据和一个新段落练习。"
+    }
   ],
-  preferences: [{name:'工作城市', weight:null, detail:'优先考虑重庆。'}, {name:'学习时间', weight:null, detail:'希望下班后留出时间学习。'}],
-  unknowns: ['期望薪资范围', '愿意接受的通勤范围'],
-  first_action: '把 Excel 销量分析项目整理成一页作品，写清数据来源、图表和结论。'
+  "preferences": [
+    {
+      "name": "目标地区",
+      "weight": null,
+      "detail": "优先在重庆找工作；具体区县和可接受校区待补充。"
+    },
+    {
+      "name": "教学与成长",
+      "weight": null,
+      "detail": "希望有教研支持或带教老师，需要了解新教师培养的实际安排。"
+    },
+    {
+      "name": "学习与备课时间",
+      "weight": null,
+      "detail": "希望下班后能留出时间学习，晚自习、周末排班和班主任安排需确认。"
+    },
+    {
+      "name": "通勤与薪资",
+      "weight": null,
+      "detail": "住址或出发站点、交通方式、通勤上限和薪资目标尚未填写。"
+    }
+  ],
+  "unknowns": [
+    "是否确为应届毕业生、毕业年份和最高学历，需以本人实际情况替换示例。",
+    "教师资格证的学段、学科和取得时间；普通话证书情况。",
+    "有没有教育实习、正式授课、班主任或教研经历。",
+    "出发区县或附近站点、通勤方式和可接受的单程时长。",
+    "学校具体校区、晚自习和周末安排、是否带班主任。",
+    "期望薪资、岗位的工资构成和实际工作量。"
+  ],
+  "first_action": "先完成一次《荷塘月色》10 分钟微试讲，留下视频和一页教案；同时把教资、毕业年份填完整。带着作品去核对下方单位的语文学科、学段及应届生条件，再决定投递。",
+  "recommendations": [
+    {
+      "company": "重庆市巴川中学校",
+      "level": "优先核对语文学科与应届条件",
+      "direction": "语文教师；高中学段和具体校区需确认",
+      "reason": "高校就业网发布的该校新教师招聘信息包含语文学科和应届毕业生类别。你准备的文本细读试讲可以用于展示语文学科的教学思路。",
+      "needs_fit": "单位位于重庆，符合示例的目标地区。能否满足带教、学习时间和通勤需求，需要核实具体校区和岗位安排。",
+      "unknowns": [
+        "语文学科对应的具体学段、校区和空缺是否仍开放",
+        "你的毕业年份、学历和教资是否达到公告条件",
+        "新教师带教、班主任和晚自习安排",
+        "办公校区和个人出发位置未齐，通勤待确认"
+      ],
+      "next_step": "先读招聘公告的应届生条件，再向学校确认高中语文岗位、具体校区和试讲要求。",
+      "recruitment_url": "https://cug.91wllm.cn/campus/view/id/1006865",
+      "source_url": "https://www.bcschool.cn/",
+      "source_date": "2026-11-07",
+      "verification": "查到高校就业网招聘公告和学校官网；具体职位仍需学校确认"
+    },
+    {
+      "company": "重庆德普外国语学校",
+      "level": "建议进一步核实",
+      "direction": "语文教师；学段及课程要求待确认",
+      "reason": "第三方招聘页列出了语文教师职位。你的汉语言文学示例背景和试讲准备可用于对照岗位，但还需要学校确认职位条件。",
+      "needs_fit": "可作为重庆地区学校的备选线索。岗位所属学段、教研支持和实际排班未核实，当前不判断整体适合程度。",
+      "unknowns": [
+        "第三方发布的语文职位是否仍然有效",
+        "是否面向高中学段、是否接收应届生",
+        "岗位对教学经验和教资的具体要求",
+        "校区地址、带班与作息安排"
+      ],
+      "next_step": "从学校官网核实招聘联系方式，确认语文学段和当前招聘状态后，再递交试讲作品。",
+      "recruitment_url": "https://www.gaoxiaojob.com/job/detail/2224433.html",
+      "source_url": "https://www.dpfls.com/",
+      "source_date": "2026-11-07",
+      "verification": "查到学校官网及第三方语文教师招聘页；职位信息尚未获学校独立确认"
+    },
+    {
+      "company": "新东方",
+      "level": "条件性备选",
+      "direction": "在官网查询重庆语文或相关教学岗位",
+      "reason": "已找到企业官方招聘网站，可用于检索重庆及相关教学方向。你的试讲片段可作为后续沟通材料，当前未确认一个符合你条件的具体职位。",
+      "needs_fit": "你愿意先了解教育机构，可将其作为补充检索入口。若晚间或周末安排影响学习时间，需要结合实际岗位重新判断。",
+      "unknowns": [
+        "重庆当前是否有与高中语文目标一致的在招岗位",
+        "课程对象、工作职责和用工主体",
+        "晚间、周末排班及备课时间安排",
+        "具体办公地点和薪资构成"
+      ],
+      "next_step": "进入官方招聘网站，搜索重庆和语文；找不到合适职位时保留为后续检索方向。",
+      "recruitment_url": "https://zhaopin.xdf.cn/",
+      "source_date": "2026-11-07",
+      "verification": "已核对企业官方招聘入口；重庆语文具体职位状态待确认"
+    }
+  ],
+  "report_title": "语文教师求职画像与单位推荐报告",
+  "metadata": {
+    "target_role": "高中语文教师（示例目标）",
+    "city": "重庆",
+    "education": "汉语言文学，应届；学历层次待确认",
+    "qualification": "教师资格、普通话情况待确认",
+    "commute": "出发位置、方式和上限待确认"
+  },
+  "action_plan": [
+    {
+      "when": "先核对",
+      "task": "确认本人教资学段学科、毕业年份和目标学段",
+      "deliverable": "一份真实资格清单"
+    },
+    {
+      "when": "准备作品",
+      "task": "完成《荷塘月色》微试讲，收集一条具体反馈",
+      "deliverable": "视频和一页教案"
+    },
+    {
+      "when": "核实单位",
+      "task": "进入招聘来源核实当前职位、校区和作息",
+      "deliverable": "每家单位的一组待确认问题"
+    }
+  ]
 };
-const colors = ['#158067', '#3069a2', '#aa591f', '#7954a3', '#b23b64', '#626a35'];
 const byId = id => document.getElementById(id);
-const list = value => Array.isArray(value) ? value : [];
+const items = value => Array.isArray(value) ? value : [];
+const text = value => typeof value === 'string' ? value : '';
 function add(parent, tag, value, className) {
-  const element = document.createElement(tag);
-  if (className) element.className = className;
-  element.textContent = typeof value === 'string' ? value : '';
-  parent.append(element);
-  return element;
+  const node = document.createElement(tag);
+  node.textContent = text(value);
+  if (className) node.className = className;
+  parent.append(node);
+  return node;
 }
-function lines(parent, fields) {
-  for (const [label, value] of fields) {
-    if (typeof value === 'string' && value.trim()) add(parent, 'p', label + '　' + value);
-  }
+function labelled(parent, label, value) {
+  if (!text(value).trim()) return;
+  const line = add(parent, 'p');
+  add(line, 'strong', label + '　');
+  add(line, 'span', value);
 }
-function render(data, isDemo) {
-  if (data?.status !== 'ready' || typeof data.profile !== 'string' || !Array.isArray(data.interests)) {
-    throw new Error('请粘贴状态为 ready 的完整画像 JSON。');
+function link(parent, title, value, secondary) {
+  try {
+    const url = new URL(value);
+    if (!['https:','http:'].includes(url.protocol)) return false;
+    const anchor = add(parent,'a',title, secondary ? 'secondary' : '');
+    anchor.href = url.href;
+    anchor.target = '_blank';
+    anchor.rel = 'noopener noreferrer';
+    return true;
+  } catch { return false; }
+}
+function renderBase(data, isDemo) {
+  if (!data || data.status !== 'ready' || typeof data.profile !== 'string' || !Array.isArray(data.interests)) {
+    throw new Error('尚未收到生成成功的画像，请回到 Agent 先整理或更新画像。');
   }
-  for (const id of ['bars','strengths','interests','preferences','unknowns']) byId(id).replaceChildren();
-  byId('mode').textContent = isDemo ? '求职助手 · 示例报告' : '求职助手 · 个人报告';
+  for (const id of ['metadata','strengths','bars','interests','preferences','recommendations','unknowns','plan']) byId(id).replaceChildren();
+  byId('load-message').hidden = true;
+  byId('report-content').hidden = false;
+  byId('report-mode').textContent = isDemo ? 'JOB PROFILE REPORT · 示例内容' : 'JOB PROFILE REPORT · 本次会话报告';
+  const title = text(data.report_title) || '我的求职画像与单位推荐报告';
+  byId('report-title').textContent = title;
+  document.title = title;
+  byId('report-sub').textContent = isDemo ? '沿用 WorkBuddy 版式 · 当前使用语文教师示例，可查看报告呈现效果' : '根据 Agent 保存的画像整理 · 经历、分析建议和待确认信息分别呈现';
   byId('profile').textContent = data.profile;
-  byId('first_action').textContent = typeof data.first_action === 'string' ? data.first_action : '暂未提供';
-  for (const item of data.interests.filter(x => typeof x?.role === 'string')) {
-    if (Number.isInteger(item.score) && item.score >= 1 && item.score <= 3) {
-      const column = add(byId('bars'), 'div', '', 'column');
-      const slot = add(column, 'div', '', 'slot');
-      add(slot, 'strong', item.score + ' / 3');
-      add(slot, 'div', '', 'bar').style.height = (item.score * 25) + 'px';
-      add(column, 'div', item.role);
-    }
-    const card = add(byId('interests'), 'article');
-    add(card, 'h3', item.role + (typeof item.level === 'string' ? ' · ' + item.level : ''));
-    lines(card, [['平时做什么', item.daily_work], ['推荐依据', item.reason], ['还想验证', item.to_verify], ['先试一件事', item.next_step]]);
+  byId('decision').textContent = text(data.decision) || '先对照下面的经历依据和方向建议，招聘条件、实际作息及通勤等未知项仍需核实。';
+  byId('decision').hidden = false;
+  const metadata = data.metadata && typeof data.metadata === 'object' && !Array.isArray(data.metadata) ? data.metadata : {};
+  for (const [key, label] of [['target_role','目标岗位'],['city','目标城市'],['education','学历 / 专业'],['qualification','资格证书'],['commute','通勤条件']]) {
+    const item = add(byId('metadata'),'div',undefined,'meta-item');
+    add(item,'span',label,'k');
+    add(item,'span',text(metadata[key]) || '待补充确认','v');
   }
-  if (!byId('bars').childElementCount) add(byId('bars'), 'p', '暂未提供探索等级。');
-  for (const item of list(data.strengths).filter(x => typeof x?.name === 'string')) {
-    const card = add(byId('strengths'), 'article');
-    add(card, 'h3', item.name);
-    lines(card, [['经历依据', item.evidence], ['可以用在', item.application]]);
+  for (const [index,item] of items(data.strengths).entries()) {
+    if (!item || typeof item.name !== 'string') continue;
+    const card = add(byId('strengths'),'article',undefined,'card ' + ['red','green','amber'][index % 3]);
+    add(card,'h4',item.name);
+    labelled(card,'本人经历',item.evidence);
+    labelled(card,'可以用在',item.application);
   }
-  const prefs = list(data.preferences).filter(x => typeof x?.name === 'string');
-  const weighted = prefs.length > 0 && prefs.every(x => Number.isFinite(x.weight) && x.weight >= 0) &&
-    Math.abs(prefs.reduce((sum, x) => sum + x.weight, 0) - 100) < 0.000001;
-  const donut = byId('donut');
-  donut.hidden = !weighted;
-  byId('weight-note').textContent = weighted ? '按已确认的权重绘制。' : '偏好尚未分配权重，先用文字展示。';
-  let start = 0;
-  const slices = [];
-  prefs.forEach((item, i) => {
-    const color = colors[i % colors.length];
-    const row = add(byId('preferences'), 'li');
-    if (weighted) {
-      add(row, 'span', '', 'swatch').style.background = color;
-      slices.push(color + ' ' + start + '% ' + (start + item.weight) + '%');
-      start += item.weight;
+  if (!byId('strengths').childElementCount) add(byId('strengths'),'p','本次画像暂未提供经历依据。','footnote');
+  for (const item of data.interests) {
+    if (!item || typeof item.role !== 'string') continue;
+    const validScore = Number.isInteger(item.score) && item.score >= 1 && item.score <= 3;
+    const row = add(byId('bars'),'div',undefined,'plot-row');
+    add(row,'span',item.role);
+    const track = add(row,'div',undefined,'bar-bg');
+    track.setAttribute('aria-hidden','true');
+    const bar = add(track,'div',undefined,'bar' + (item.score === 2 ? ' mid' : item.score === 1 ? ' low' : ''));
+    bar.style.width = validScore ? item.score / 3 * 100 + '%' : '0%';
+    add(row,'span',validScore ? item.score + ' / 3' : '待评估');
+    const card = add(byId('interests'),'article',undefined,'callout neutral');
+    add(card,'h3',item.role + (text(item.level) ? ' · ' + item.level : ''));
+    labelled(card,'典型工作',item.daily_work);
+    labelled(card,'推荐依据',item.reason);
+    labelled(card,'仍需验证',item.to_verify);
+    labelled(card,'先试一件事',item.next_step);
+  }
+  const preferences = items(data.preferences).filter(item => item && typeof item.name === 'string');
+  for (const item of preferences) {
+    add(byId('preferences'),'dt',item.name);
+    add(byId('preferences'),'dd',text(item.detail) || '具体要求待补充。');
+  }
+  const recommendations = items(data.recommendations).filter(item => item && typeof item.company === 'string');
+  for (const item of recommendations) {
+    const card = add(byId('recommendations'),'article',undefined,'unit');
+    add(card,'span',text(item.level) || '条件待核实','tag t-warn');
+    add(card,'h3',item.company);
+    labelled(card,'建议查询方向',item.direction);
+    labelled(card,'为什么推荐',item.reason);
+    labelled(card,'对照你的需求',item.needs_fit);
+    const unknowns = items(item.unknowns).filter(value => typeof value === 'string');
+    if (unknowns.length) {
+      add(card,'h4','接受或投递前确认');
+      const list = add(card,'ul',undefined,'clean');
+      for (const value of unknowns) add(list,'li',value);
     }
-    add(row, 'strong', item.name + (weighted ? ' ' + item.weight + '%' : ''));
-    if (typeof item.detail === 'string') add(row, 'span', '　' + item.detail);
-  });
-  if (weighted) donut.style.background = 'conic-gradient(' + slices.join(', ') + ')';
-  for (const item of list(data.unknowns)) if (typeof item === 'string') add(byId('unknowns'), 'li', item);
+    labelled(card,'下一步行动',item.next_step);
+    const links = add(card,'div',undefined,'unit-links');
+    const hasLink = link(links,'打开招聘来源',item.recruitment_url,false);
+    link(links,'查看单位官网',item.source_url,true);
+    if (!hasLink) add(card,'p','尚未提供有效招聘链接，请向 Agent 补充可核对的来源。','footnote');
+    labelled(card,'核对情况',item.verification);
+    labelled(card,'资料日期',item.source_date);
+  }
+  if (!recommendations.length) add(byId('recommendations'),'div','本次 Agent 尚未输出带来源的单位推荐。请在预览里要求“根据我的需求推荐单位，附招聘链接”，并核对生成数据中是否有 recommendations。','callout neutral');
+  const unknowns = items(data.unknowns).filter(value => typeof value === 'string');
+  for (const value of unknowns) add(byId('unknowns'),'li',value);
+  if (!unknowns.length) add(byId('unknowns'),'li','本次画像未列出待确认项，投递前仍请核对具体职位条件。');
+  byId('first-action').textContent = text(data.first_action) || '先补齐经历和目标岗位信息，再生成具体行动建议。';
+  for (const value of items(data.action_plan)) {
+    if (typeof value === 'string') add(byId('plan'),'li',value);
+    else if (value && typeof value.task === 'string') add(byId('plan'),'li',[text(value.when),value.task,text(value.deliverable)].filter(Boolean).join(' · '));
+  }
+  byId('footer-note').textContent = '报告根据输入的画像呈现。具体在招状态、资格条件和工作安排以原始公告与招聘方确认结果为准。';
 }
-byId('load').addEventListener('click', () => {
+
+function render(data, isDemo) {
+  renderBase(data,isDemo);
+  byId('development').replaceChildren();
+  for (const item of items(data.interests)) {
+    if (!item || typeof item.to_verify !== 'string') continue;
+    const block = add(byId('development'),'div',undefined,'callout neutral');
+    add(block,'h3',text(item.role));
+    labelled(block,'还需验证',item.to_verify);
+    labelled(block,'先做一次',item.next_step);
+  }
+  if (!byId('development').childElementCount) add(byId('development'),'p','本次画像尚未提供能力补充建议。','footnote');
+  byId('sources').replaceChildren();
+  for (const item of items(data.recommendations)) {
+    if (!item || typeof item.company !== 'string') continue;
+    const block = add(byId('sources'),'p');
+    add(block,'strong',item.company + '　');
+    if (!link(block,'查看招聘来源',item.recruitment_url,false)) add(block,'span','招聘链接待核实。');
+    if (typeof item.source_date === 'string') add(block,'span',' · 资料日期 ' + item.source_date,'footnote');
+  }
+  if (!byId('sources').childElementCount) add(byId('sources'),'p','Agent 尚未提供带出处的单位链接。','footnote');
+}
+
+async function load() {
+  const hash = window.location.hash;
+  if (!hash || hash === '#' || (!hash.startsWith('#profile=') && !hash.startsWith('#gz='))) {
+    const kicker = document.querySelector('.kicker');
+    if (kicker) kicker.textContent = 'JOB PROFILE REPORT · 原附件样例（信息尚未重新核验）';
+    return;
+  }
+  document.querySelector('.page').innerHTML = reportLayout;
+  byId('print').addEventListener('click',() => window.print());
   try {
-    render(JSON.parse(byId('source').value), false);
-    byId('notice').textContent = '';
-    window.scrollTo(0, 0);
+    let data;
+    if (hash.startsWith('#profile=')) data = JSON.parse(decodeURIComponent(hash.slice(9)));
+    else if (hash.startsWith('#gz=')) {
+      const token = hash.slice(4).replace(/-/g,'+').replace(/_/g,'/');
+      const padded = token.padEnd(Math.ceil(token.length / 4)*4,'=');
+      const bytes = Uint8Array.from(atob(padded),value => value.charCodeAt(0));
+      const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
+      data = JSON.parse(await new Response(stream).text());
+    } else { render(demo,true); return; }
+    render(data,false);
   } catch (error) {
-    byId('notice').textContent = error instanceof SyntaxError ? '这段内容不是完整 JSON，请从开头的 { 复制到最后的 }。' : error.message;
-  }
-});
-render(demo, true);
-if (window.location.hash.startsWith('#profile=')) {
-  try {
-    const encoded = window.location.hash.slice('#profile='.length);
-    render(JSON.parse(decodeURIComponent(encoded)), false);
-  } catch {
-    byId('mode').textContent = '求职助手 · 链接数据无法读取 · 以下为示例';
+    byId('report-content').hidden = true;
+    byId('report-mode').textContent = 'JOB PROFILE REPORT · 数据读取失败';
+    byId('report-title').textContent = '请重新生成报告链接';
+    byId('report-sub').textContent = '';
+    byId('load-message').hidden = false;
+    byId('load-message').textContent = '报告数据读取失败。请回到 Agent 重新发送“生成我的求职画像报告”，再打开新链接。';
   }
 }
+load();
+
+
 </script>
 </body>
 </html>
